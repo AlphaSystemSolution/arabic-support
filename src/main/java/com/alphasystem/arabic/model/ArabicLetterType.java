@@ -164,9 +164,9 @@ public enum ArabicLetterType implements ArabicCharacter {
 
 	NINE('9', '\u0669'),
 
-	LEFT_POINTING_DOUBLE_ANGLE_QUOTATION_MARK('<', '\u00AB'),
+	LEFT_POINTING_DOUBLE_ANGLE_QUOTATION_MARK('\"', '\u00AB'),
 
-	RIGHT_POINTING_DOUBLE_ANGLE_QUOTATION_MARK('>', '\u00BB');;
+	RIGHT_POINTING_DOUBLE_ANGLE_QUOTATION_MARK('\"', '\u00BB');
 
 	private static final Map<Character, ArabicLetterType> lettersByCodeMap = new LinkedHashMap<Character, ArabicLetterType>();
 
@@ -179,21 +179,20 @@ public enum ArabicLetterType implements ArabicCharacter {
 		}
 	}
 
+	private final char code;
+	private final char unicode;
+
+	ArabicLetterType(char code, char unicode) {
+		this.code = code;
+		this.unicode = unicode;
+	}
+
 	public static ArabicLetterType getByCode(char code) {
 		return lettersByCodeMap.get(code);
 	}
 
 	public static ArabicLetterType getByUnicode(char unicode) {
 		return lettersByUnicodeMap.get(new Character(unicode));
-	}
-
-	private final char code;
-
-	private final char unicode;
-
-	private ArabicLetterType(char code, char unicode) {
-		this.code = code;
-		this.unicode = unicode;
 	}
 
 	@Override
