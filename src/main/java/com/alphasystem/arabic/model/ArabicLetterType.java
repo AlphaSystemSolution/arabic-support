@@ -126,6 +126,8 @@ public enum ArabicLetterType implements ArabicCharacter {
 
 	SMALL_YA('.', '\u06E6'),
 
+	SMALL_HIGH_YEH('\\', '\u06E7'),
+
 	SMALL_HIGH_NOON('!', '\u06E8'),
 
 	PLACE_OF_SAJDAH('P', '\u06E9'),
@@ -192,7 +194,7 @@ public enum ArabicLetterType implements ArabicCharacter {
 	}
 
 	public static ArabicLetterType getByUnicode(char unicode) {
-		return lettersByUnicodeMap.get(new Character(unicode));
+		return lettersByUnicodeMap.get(unicode);
 	}
 
 	@Override
