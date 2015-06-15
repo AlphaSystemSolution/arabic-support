@@ -3,36 +3,14 @@
  */
 package com.alphasystem.arabic.model;
 
-import static com.alphasystem.arabic.model.ArabicLetterType.AIN;
-import static com.alphasystem.arabic.model.ArabicLetterType.ALIF;
-import static com.alphasystem.arabic.model.ArabicLetterType.ALIF_HAMZA_ABOVE;
-import static com.alphasystem.arabic.model.ArabicLetterType.ALIF_HAMZA_BELOW;
-import static com.alphasystem.arabic.model.ArabicLetterType.DAL;
-import static com.alphasystem.arabic.model.ArabicLetterType.FA;
-import static com.alphasystem.arabic.model.ArabicLetterType.HA;
-import static com.alphasystem.arabic.model.ArabicLetterType.JEEM;
-import static com.alphasystem.arabic.model.ArabicLetterType.LAM;
-import static com.alphasystem.arabic.model.ArabicLetterType.MEEM;
-import static com.alphasystem.arabic.model.ArabicLetterType.NOON;
-import static com.alphasystem.arabic.model.ArabicLetterType.RA;
-import static com.alphasystem.arabic.model.ArabicLetterType.SEEN;
-import static com.alphasystem.arabic.model.ArabicLetterType.SPACE;
-import static com.alphasystem.arabic.model.ArabicLetterType.TA;
-import static com.alphasystem.arabic.model.ArabicLetterType.THA;
-import static com.alphasystem.arabic.model.ArabicLetterType.WAW;
-import static com.alphasystem.arabic.model.ArabicLetterType.YA;
-import static com.alphasystem.arabic.model.ArabicLetterType.ZAIN;
-import static com.alphasystem.arabic.model.ArabicWord.fromBuckWalterString;
-import static com.alphasystem.arabic.model.ArabicWord.getWord;
-import static com.alphasystem.arabic.model.DiacriticType.DAMMA;
-import static com.alphasystem.arabic.model.DiacriticType.FATHA;
-import static com.alphasystem.arabic.model.DiacriticType.KASRA;
-import static com.alphasystem.arabic.model.DiacriticType.SHADDA;
-import static com.alphasystem.arabic.model.DiacriticType.SUKUN;
-import static java.lang.String.format;
-
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
+
+import static com.alphasystem.arabic.model.ArabicLetterType.*;
+import static com.alphasystem.arabic.model.ArabicWord.fromBuckWalterString;
+import static com.alphasystem.arabic.model.ArabicWord.getWord;
+import static com.alphasystem.arabic.model.DiacriticType.*;
+import static java.lang.String.format;
 
 /**
  * @author sali
@@ -269,8 +247,8 @@ public enum NamedTemplate implements ArabicSupportEnum {
 	 * @param label
 	 * @param type
 	 */
-	private NamedTemplate(String form, Integer index, Integer subIndex,
-			ArabicWord label, ArabicWord type) {
+	NamedTemplate(String form, Integer index, Integer subIndex,
+				  ArabicWord label, ArabicWord type) {
 		this.form = form;
 		this.index = index;
 		this.subIndex = subIndex;
@@ -286,8 +264,9 @@ public enum NamedTemplate implements ArabicSupportEnum {
 	 * @param label
 	 * @param type
 	 */
-	private NamedTemplate(String form, Integer index, Integer subIndex,
-			String label, String type) {
+	@Deprecated
+	NamedTemplate(String form, Integer index, Integer subIndex,
+				  String label, String type) {
 		this(form, index, subIndex, fromBuckWalterString(label),
 				fromBuckWalterString(type));
 	}
