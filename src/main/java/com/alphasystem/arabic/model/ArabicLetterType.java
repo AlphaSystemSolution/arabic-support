@@ -142,9 +142,15 @@ public enum ArabicLetterType implements ArabicCharacter {
 
 	SPACE(' ', '\u0020'), COMMA('=', '\u060C'),
 
-	OPEN_BRACKET('(', '\uFD3E'),
+	ORNATE_LEFT_PARENTHESIS('(', '\uFD3E'),
 
-	CLOSE_BRACKET(')', '\uFD3F'),
+	ORNATE_RIGHT_PARENTHESIS(')', '\uFD3F'),
+
+	ASTERISK('*', '\u002A'),
+
+	LEFT_PARENTHESIS('(', '\u0028'),
+
+	RIGHT_PARENTHESIS(')', '\u0029'),
 
 	ZERO('0', '\u0660'),
 
@@ -170,9 +176,9 @@ public enum ArabicLetterType implements ArabicCharacter {
 
 	RIGHT_POINTING_DOUBLE_ANGLE_QUOTATION_MARK('\"', '\u00BB');
 
-	private static final Map<Character, ArabicLetterType> lettersByCodeMap = new LinkedHashMap<Character, ArabicLetterType>();
+	private static final Map<Character, ArabicLetterType> lettersByCodeMap = new LinkedHashMap<>();
 
-	private static final Map<Character, ArabicLetterType> lettersByUnicodeMap = new LinkedHashMap<Character, ArabicLetterType>();
+	private static final Map<Character, ArabicLetterType> lettersByUnicodeMap = new LinkedHashMap<>();
 
 	static {
 		for (ArabicLetterType letter : values()) {

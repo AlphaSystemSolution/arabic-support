@@ -197,7 +197,7 @@ public class ArabicWord implements Serializable, Comparable<ArabicWord> {
                                                boolean includeVerseNumber, boolean encloseBracket) {
         StringBuilder builder = new StringBuilder();
         if (encloseBracket) {
-            builder.append(CLOSE_BRACKET.getUnicode());
+            builder.append(ORNATE_RIGHT_PARENTHESIS.getUnicode());
         }
         if (includeChapterNumber) {
             builder.append(getArabicNumber(chapterNumber).toUnicode());
@@ -211,7 +211,7 @@ public class ArabicWord implements Serializable, Comparable<ArabicWord> {
         }
 
         if (encloseBracket) {
-            builder.append(OPEN_BRACKET.getUnicode());
+            builder.append(ORNATE_LEFT_PARENTHESIS.getUnicode());
         }
         return builder.toString();
     }
