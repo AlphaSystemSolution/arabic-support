@@ -170,11 +170,7 @@ public enum ArabicLetterType implements ArabicCharacter {
 
 	EIGHT('8', '\u0668'),
 
-	NINE('9', '\u0669'),
-
-	LEFT_POINTING_DOUBLE_ANGLE_QUOTATION_MARK('\"', '\u00AB'),
-
-	RIGHT_POINTING_DOUBLE_ANGLE_QUOTATION_MARK('\"', '\u00BB');
+	NINE('9', '\u0669');
 
 	private static final Map<Character, ArabicLetterType> lettersByCodeMap = new LinkedHashMap<>();
 
