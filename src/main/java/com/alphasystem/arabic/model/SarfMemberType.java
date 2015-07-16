@@ -15,10 +15,16 @@ public interface SarfMemberType {
 	/**
 	 * @return
 	 */
-	public ArabicWord getMemberTermLabel();
+	ArabicWord getMemberTermLabel();
+
+	/**
+	 *
+	 * @return
+	 */
+	ArabicWord getLabel();
 
 	/**
 	 * @return
 	 */
-	public String getMemberTermName();
+	String getMemberTermName();
 }

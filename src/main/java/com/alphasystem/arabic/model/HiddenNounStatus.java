@@ -5,6 +5,7 @@ package com.alphasystem.arabic.model;
 
 
 import static com.alphasystem.arabic.model.ArabicLetterType.*;
+import static com.alphasystem.arabic.model.ArabicWord.concatenateWithSpace;
 import static com.alphasystem.arabic.model.ArabicWord.getWord;
 
 /**
@@ -12,37 +13,51 @@ import static com.alphasystem.arabic.model.ArabicWord.getWord;
  */
 public enum HiddenNounStatus implements SarfMemberType {
 
-    NOMINATIVE_SINGULAR(getWord(MEEM, RA, FA, AIN, SPACE, MEEM, FA, RA, DAL)),
+    NOMINATIVE_SINGULAR(getWord(MEEM, RA, FA, WAW, AIN), getWord(MEEM, FA, RA, DAL)),
 
-    NOMINATIVE_DUAL(getWord(MEEM, RA, FA, AIN, SPACE, MEEM, THA, NOON, ALIF_MAKSURA)),
+    NOMINATIVE_DUAL(getWord(MEEM, RA, FA, WAW, AIN), getWord(MEEM, THA, NOON, ALIF_MAKSURA)),
 
-    NOMINATIVE_PLURAL(getWord(MEEM, RA, FA, AIN, SPACE, JEEM, MEEM, AIN)),
+    NOMINATIVE_PLURAL(getWord(MEEM, RA, FA, WAW, AIN), getWord(JEEM, MEEM, AIN)),
 
-    ACCUSATIVE_SINGULAR(getWord(MEEM, NOON, SAD, WAW, BA, SPACE, MEEM, FA, RA, DAL)),
+    ACCUSATIVE_SINGULAR(getWord(MEEM, NOON, SAD, WAW, BA), getWord(MEEM, FA, RA, DAL)),
 
-    ACCUSATIVE_DUAL(getWord(MEEM, NOON, SAD, WAW, BA, SPACE, MEEM, THA, NOON, ALIF_MAKSURA)),
+    ACCUSATIVE_DUAL(getWord(MEEM, NOON, SAD, WAW, BA), getWord(MEEM, THA, NOON, ALIF_MAKSURA)),
 
-    ACCUSATIVE_PLURAL(getWord(MEEM, NOON, SAD, WAW, BA, SPACE, JEEM, MEEM, AIN)),
+    ACCUSATIVE_PLURAL(getWord(MEEM, NOON, SAD, WAW, BA), getWord(JEEM, MEEM, AIN)),
 
-    GENITIVE_SINGULAR(getWord(MEEM, JEEM, RA, WAW, RA, SPACE, MEEM, FA, RA, DAL)),
+    GENITIVE_SINGULAR(getWord(MEEM, JEEM, RA, WAW, RA), getWord(MEEM, FA, RA, DAL)),
 
-    GENITIVE_DUAL(getWord(MEEM, JEEM, RA, WAW, RA, SPACE, MEEM, THA, NOON, ALIF_MAKSURA)),
+    GENITIVE_DUAL(getWord(MEEM, JEEM, RA, WAW, RA), getWord(MEEM, THA, NOON, ALIF_MAKSURA)),
 
-    GENITIVE_PLURAL(getWord(MEEM, JEEM, RA, WAW, RA, SPACE, MEEM, THA, NOON, ALIF_MAKSURA));
+    GENITIVE_PLURAL(getWord(MEEM, JEEM, RA, WAW, RA), getWord(MEEM, THA, NOON, ALIF_MAKSURA));
 
     private final ArabicWord label;
 
+    private final ArabicWord numberLabel;
+
     /**
+     * @param numberLabel
      * @param label
      */
-    HiddenNounStatus(ArabicWord label) {
+    HiddenNounStatus(ArabicWord label, ArabicWord numberLabel) {
         this.label = label;
+        this.numberLabel = numberLabel;
     }
 
     @Override
     public ArabicWord getMemberTermLabel() {
+        return concatenateWithSpace(getLabel(), getNumberLabel());
+    }
+
+    public ArabicWord getNumberLabel() {
+        return numberLabel;
+    }
+
+    @Override
+    public ArabicWord getLabel() {
         return label;
     }
+
 
     @Override
     public String getMemberTermName() {
