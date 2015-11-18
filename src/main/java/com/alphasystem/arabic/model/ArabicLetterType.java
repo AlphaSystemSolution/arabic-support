@@ -213,6 +213,10 @@ public enum ArabicLetterType implements ArabicCharacter {
 		return String.valueOf(unicode);
 	}
 
+	public String toCode(){
+		return String.valueOf(code);
+	}
+
 	public String getHtmlCode() {
 		return toHtmlCodeString(unicode);
 	}
