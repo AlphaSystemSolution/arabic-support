@@ -458,7 +458,7 @@ public class ArabicWord implements ArabicSupport, Serializable, Comparable<Arabi
     }
 
     @Override
-    public ArabicWord getArabicWord() {
+    public ArabicWord getLabel() {
         return this;
     }
 }

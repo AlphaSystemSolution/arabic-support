@@ -13,5 +13,5 @@ public interface ArabicSupport {
      * @return Arabic word
      * @see ArabicWord
      */
-    ArabicWord getArabicWord();
+    ArabicWord getLabel();
 }

@@ -5,20 +5,15 @@ package com.alphasystem.arabic.model;
  * @author sali
  * 
  */
-public interface ArabicSupportEnum {
+public interface ArabicSupportEnum extends ArabicSupport {
 
 	/**
 	 * @return
 	 */
-	public String getCode();
+	String getCode();
 
 	/**
 	 * @return
 	 */
-	public ArabicWord getLabel();
-
-	/**
-	 * @return
-	 */
-	public String getName();
+	String getName();
 }
