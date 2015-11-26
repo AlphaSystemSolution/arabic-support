@@ -28,7 +28,7 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ArabicWordType", propOrder = {"letters"})
-public class ArabicWord implements Serializable, Comparable<ArabicWord> {
+public class ArabicWord implements ArabicSupport, Serializable, Comparable<ArabicWord> {
 
     private static final long serialVersionUID = -8680553361456269317L;
     @XmlElementWrapper
@@ -455,5 +455,10 @@ public class ArabicWord implements Serializable, Comparable<ArabicWord> {
             convert();
         }
         return unicodeString;
+    }
+
+    @Override
+    public ArabicWord getArabicWord() {
+        return this;
     }
 }

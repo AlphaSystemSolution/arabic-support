@@ -16,7 +16,7 @@ import static java.lang.String.format;
  */
 @XmlType(name = "ArabicLetterTypeType")
 @XmlEnum
-public enum ArabicLetterType implements ArabicCharacter {
+public enum ArabicLetterType implements ArabicCharacter, ArabicSupport {
 
 	HAMZA('\'', '\u0621'),
 
@@ -225,5 +225,10 @@ public enum ArabicLetterType implements ArabicCharacter {
 		String s = format("%04x", (int) unicode);
 		int i = Integer.parseInt(s, 16);
 		return format("&#%s;", i);
+	}
+
+	@Override
+	public ArabicWord getArabicWord() {
+		return ArabicWord.getWord(this);
 	}
 }
