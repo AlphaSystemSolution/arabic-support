@@ -14,6 +14,7 @@ import java.util.List;
 import static com.alphasystem.arabic.model.ArabicLetterType.*;
 import static com.alphasystem.arabic.model.ArabicLetters.LETTER_SPACE;
 import static com.alphasystem.arabic.model.ArabicLetters.LETTER_WAW;
+import static com.alphasystem.util.AppUtil.isGivenType;
 import static com.alphasystem.util.HashCodeUtil.hash;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
@@ -79,9 +80,15 @@ public class ArabicWord implements ArabicSupport, Serializable, Comparable<Arabi
 
     public static ArabicWord concatenate(ArabicWord... words) {
         List<ArabicLetter> letters = new ArrayList<ArabicLetter>();
-        addAll(letters, words[0].getLetters());
+        ArabicLetter[] arabicLetters = words[0].getLetters();
+        if (!isEmpty(arabicLetters)) {
+            addAll(letters, arabicLetters);
+        }
         for (int i = 1; i < words.length; i++) {
-            addAll(letters, words[i].getLetters());
+            arabicLetters = words[i].getLetters();
+            if (!isEmpty(arabicLetters)) {
+                addAll(letters, arabicLetters);
+            }
         }
         return new ArabicWord(letters);
     }
@@ -175,7 +182,7 @@ public class ArabicWord implements ArabicSupport, Serializable, Comparable<Arabi
     public static ArabicWord getConcatenatedNumber(String delimiter,
                                                    Integer... numbers) {
         delimiter = isBlank(delimiter) ? ":" : delimiter;
-        if (!ArrayUtils.isEmpty(numbers)) {
+        if (!isEmpty(numbers)) {
 
         }
         return null;
@@ -239,7 +246,7 @@ public class ArabicWord implements ArabicSupport, Serializable, Comparable<Arabi
     }
 
     public ArabicWord addDiacritic(int index, DiacriticType newDiacritic) {
-        if (ArrayUtils.isEmpty(letters)) {
+        if (isEmpty(letters)) {
             return this;
         }
         ArabicLetter arabicLetter = letters[index];
@@ -325,7 +332,7 @@ public class ArabicWord implements ArabicSupport, Serializable, Comparable<Arabi
     @Override
     public boolean equals(Object obj) {
         boolean result = false;
-        if (getClass().isAssignableFrom(obj.getClass())) {
+        if (isGivenType(ArabicWord.class, obj)) {
             ArabicWord other = (ArabicWord) obj;
             result = toBuckWalter().equals(other.toBuckWalter());
         }
