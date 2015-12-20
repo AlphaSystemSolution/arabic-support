@@ -3,6 +3,9 @@
  */
 package com.alphasystem.arabic.model;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static com.alphasystem.arabic.model.ArabicLetterType.*;
 import static com.alphasystem.arabic.model.ArabicWord.fromBuckWalterString;
 import static com.alphasystem.arabic.model.ArabicWord.getWord;
@@ -13,6 +16,7 @@ import static com.alphasystem.arabic.model.DiacriticType.*;
  */
 public interface ArabicLetters {
 
+    List<ArabicLetterType> NON_CONNECTORS = Arrays.asList(ALIF, DAL, THAL, RA, ZAIN, WAW);
     ArabicLetter LETTER_TATWEEL = new ArabicLetter(TATWEEL);
     ArabicLetter LETTER_SPACE = new ArabicLetter(SPACE);
     ArabicLetter LETTER_COMMA = new ArabicLetter(COMMA);

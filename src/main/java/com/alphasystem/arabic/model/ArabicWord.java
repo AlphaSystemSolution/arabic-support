@@ -12,8 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.alphasystem.arabic.model.ArabicLetterType.*;
-import static com.alphasystem.arabic.model.ArabicLetters.LETTER_SPACE;
-import static com.alphasystem.arabic.model.ArabicLetters.LETTER_WAW;
+import static com.alphasystem.arabic.model.ArabicLetters.*;
 import static com.alphasystem.util.AppUtil.isGivenType;
 import static com.alphasystem.util.HashCodeUtil.hash;
 import static java.lang.String.format;
@@ -243,6 +242,68 @@ public class ArabicWord implements ArabicSupport, Serializable, Comparable<Arabi
 
     public static ArabicWord negate(ArabicWord word) {
         return concatenate(getWord(LAM, ALIF, SPACE), word);
+    }
+
+    /**
+     * This method appends the letter {@link ArabicLetterType#TATWEEL} at the end of the given word, unless the last
+     * letter is is one of non-connectors.
+     * <div></div>
+     * <div style='font-style: italic;'>
+     * Most of the Arabic letters are connectors; that is, that they connect both to a preceding and a following
+     * letter. However, there are six letters that do not connect to a following letter, though they connect to
+     * preceding letter. These letters are:
+     * <div>
+     * <span style='text-align: center; font-weight: bold;'>
+     * {@link ArabicLetterType#ALIF}, {@link ArabicLetterType#DAL}, {@link ArabicLetterType#THAL},
+     * {@link ArabicLetterType#RA}, {@link ArabicLetterType#ZAIN}, {@link ArabicLetterType#WAW}
+     * </span>
+     * </div>
+     * </div>
+     * <div></div>
+     *
+     * @param src given word
+     * @return the given word if the last letter is one of non-connectors, otherwise {@link ArabicLetterType#TATWEEL}
+     * will be added at the end.
+     * @see ArabicLetters#NON_CONNECTORS
+     */
+    public static ArabicWord appendTatweel(ArabicWord src) {
+        if (src == null) {
+            return src;
+        }
+        boolean appendTatweel = false;
+        ArabicLetter lastLetter = src.getLastLetter();
+        if (lastLetter != null) {
+            ArabicLetterType letter = lastLetter.getLetter();
+            appendTatweel = (letter == null) ? false : NON_CONNECTORS.contains(letter);
+        }
+        return appendTatweel ? src : concatenate(src, WORD_TATWEEL);
+    }
+
+    /**
+     * This method adds the letter {@link ArabicLetterType#TATWEEL} between every letter of the given word, unless the
+     * letter is is one of non-connectors.
+     *
+     * @param src the given word
+     * @return the given word with {@link ArabicLetterType#TATWEEL} added in between every letter unless the letter
+     * is one of non-connectors.
+     * @see #appendTatweel(ArabicWord)
+     * @see ArabicLetters#NON_CONNECTORS
+     */
+    public static ArabicWord addTatweel(ArabicWord src) {
+        if (src == null) {
+            return src;
+        }
+        ArabicLetter[] letters = src.getLetters();
+        if (isEmpty(letters)) {
+            return src;
+        }
+        ArabicWord result = new ArabicWord();
+        // starting from 0 we will try to append TATWEEL but we will stop one letter before last letter, since we
+        // do not want to add TATWEEL after last letter
+        for (int i = 0; i < letters.length - 1; i++) {
+            result = appendTatweel(getWord(letters[i]));
+        }
+        return result;
     }
 
     public ArabicWord addDiacritic(int index, DiacriticType newDiacritic) {
