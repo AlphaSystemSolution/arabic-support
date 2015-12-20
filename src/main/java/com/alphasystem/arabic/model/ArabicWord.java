@@ -282,7 +282,8 @@ public class ArabicWord implements ArabicSupport, Serializable, Comparable<Arabi
     /**
      * This method adds the letter {@link ArabicLetterType#TATWEEL} between every letter of the given word, unless the
      * letter is is one of non-connectors.
-     *
+     * <div><span style='font-weight: bold'>NOTE:</span> this method works for single word, this method cannot
+     * handle multiple word with space and/or and</div>
      * @param src the given word
      * @return the given word with {@link ArabicLetterType#TATWEEL} added in between every letter unless the letter
      * is one of non-connectors.
@@ -301,8 +302,13 @@ public class ArabicWord implements ArabicSupport, Serializable, Comparable<Arabi
         // starting from 0 we will try to append TATWEEL but we will stop one letter before last letter, since we
         // do not want to add TATWEEL after last letter
         for (int i = 0; i < letters.length - 1; i++) {
-            result = appendTatweel(getWord(letters[i]));
+            ArabicLetter letter = letters[i];
+            result.append(letter);
+            if (!NON_CONNECTORS.contains(letter.getLetter())) {
+                result.append(LETTER_TATWEEL);
+            }
         }
+        result.append(src.getLastLetter());
         return result;
     }
 
