@@ -437,18 +437,15 @@ public interface ArabicLetters {
             TA_MARBUTA, FATHATAN);
     ArabicLetter TA_MARBUTA_WITH_KASRATAN = new ArabicLetter(
             TA_MARBUTA, KASRATAN);
-    ArabicLetter HAMZA_WITH_KASRA = new ArabicLetter(HAMZA,
-            KASRA);
-    ArabicLetter HAMZA_WITH_FATHA = new ArabicLetter(HAMZA,
-            FATHA);
-    ArabicLetter HAMZA_WITH_DAMMA = new ArabicLetter(HAMZA,
-            DAMMA);
-    ArabicLetter HAMZA_WITH_SUKUN = new ArabicLetter(HAMZA,
-            SUKUN);
+    ArabicLetter HAMZA_WITH_KASRA = new ArabicLetter(HAMZA, KASRA);
+    ArabicLetter HAMZA_WITH_FATHA = new ArabicLetter(HAMZA, FATHA);
+    ArabicLetter HAMZA_WITH_DAMMA = new ArabicLetter(HAMZA, DAMMA);
+    ArabicLetter HAMZA_WITH_SUKUN = new ArabicLetter(HAMZA, SUKUN);
 
     ArabicWord WORD_SPACE = getWord(SPACE);
     ArabicWord WORD_COMMA = getWord(COMMA);
     ArabicWord WORD_TATWEEL = getWord(LETTER_TATWEEL);
+    ArabicWord WORD_NEW_LINE = getWord(NEW_LINE);
 
     ArabicWord BISMILLAH = fromBuckWalterString("bisomi All~ahi Alr~aHoma`ni Alr~aHiymi");
     ArabicWord BISMILLAH_LONG = fromBuckWalterString("bi__________________________________________________________________somi All~ahi Alr~aHoma`ni Alr~aHiymi");
