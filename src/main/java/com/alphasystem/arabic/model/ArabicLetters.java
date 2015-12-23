@@ -17,6 +17,7 @@ import static com.alphasystem.arabic.model.DiacriticType.*;
 public interface ArabicLetters {
 
     List<ArabicLetterType> NON_CONNECTORS = Arrays.asList(ALIF, DAL, THAL, RA, ZAIN, WAW);
+    ArabicLetter LETTER_ASTERISK = new ArabicLetter(ASTERISK);
     ArabicLetter LETTER_TATWEEL = new ArabicLetter(TATWEEL);
     ArabicLetter LETTER_SPACE = new ArabicLetter(SPACE);
     ArabicLetter LETTER_COMMA = new ArabicLetter(COMMA);
