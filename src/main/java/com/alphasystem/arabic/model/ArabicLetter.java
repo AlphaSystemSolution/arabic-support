@@ -9,7 +9,6 @@ import java.io.Serializable;
 
 import static com.alphasystem.util.HashCodeUtil.hash;
 import static java.lang.Character.valueOf;
-import static java.lang.String.format;
 import static org.apache.commons.lang3.ArrayUtils.isEmpty;
 
 /**
@@ -21,20 +20,10 @@ import static org.apache.commons.lang3.ArrayUtils.isEmpty;
 public class ArabicLetter implements ArabicSupport, Serializable, Comparable<ArabicLetter> {
 
     private static final long serialVersionUID = -4076711159374677491L;
-
-    public static ArabicLetter getArabicLetter(ArabicLetterType letter,
-                                               DiacriticType... diacritics) {
-        return new ArabicLetter(letter, diacritics);
-    }
-
     private final ArabicLetterType letter;
-
     private final DiacriticType[] diacritics;
-
     private transient String bukWalterString;
-
     private transient String unicodeString;
-
     private transient String htmlCodeString;
 
     /**
@@ -62,6 +51,11 @@ public class ArabicLetter implements ArabicSupport, Serializable, Comparable<Ara
             this.diacritics[i] = diacritics[i];
         }
         convert();
+    }
+
+    public static ArabicLetter getArabicLetter(ArabicLetterType letter,
+                                               DiacriticType... diacritics) {
+        return new ArabicLetter(letter, diacritics);
     }
 
     @Override
@@ -101,14 +95,14 @@ public class ArabicLetter implements ArabicSupport, Serializable, Comparable<Ara
         bwBuilder.append(letter.getCode());
         char unicode = letter.getUnicode();
         ucBuilder.append(unicode);
-        htmlBuilder.append(toHtmlCodeString(unicode));
+        htmlBuilder.append(letter.getHtmlCode());
         if (!isEmpty(diacritics)) {
             for (int i = 0; i < diacritics.length; i++) {
                 DiacriticType d = diacritics[i];
                 bwBuilder.append(d.getCode());
                 unicode = d.getUnicode();
                 ucBuilder.append(unicode);
-                htmlBuilder.append(toHtmlCodeString(unicode));
+                htmlBuilder.append(letter.getHtmlCode());
             }
         }
         bukWalterString = bwBuilder.toString();
@@ -155,12 +149,6 @@ public class ArabicLetter implements ArabicSupport, Serializable, Comparable<Ara
 
     public String toHtmlCode() {
         return htmlCodeString;
-    }
-
-    private String toHtmlCodeString(char unicode) {
-        String s = format("%04x", (int) unicode);
-        int i = Integer.parseInt(s, 16);
-        return format("&#%s;", i);
     }
 
     @Override

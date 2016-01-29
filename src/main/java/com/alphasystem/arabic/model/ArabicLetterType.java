@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlType;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
 
 /**
@@ -226,7 +225,7 @@ public enum ArabicLetterType implements ArabicCharacter, ArabicSupport {
 
 	private String toHtmlCodeString(char unicode) {
 		String s = format("%04x", (int) unicode);
-		return format("&#%s;", parseInt(s, 16));
+		return format("&#x%s;", s);
 	}
 
 	@Override
