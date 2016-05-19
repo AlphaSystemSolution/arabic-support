@@ -13,14 +13,13 @@ import java.util.List;
 
 import static com.alphasystem.arabic.model.ArabicLetterType.*;
 import static com.alphasystem.arabic.model.ArabicLetters.*;
-import static com.alphasystem.util.AppUtil.isGivenType;
+import static com.alphasystem.util.AppUtil.isInstanceOf;
 import static com.alphasystem.util.HashCodeUtil.hash;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
 import static java.lang.System.err;
 import static java.util.Collections.addAll;
-import static org.apache.commons.lang3.ArrayUtils.add;
-import static org.apache.commons.lang3.ArrayUtils.isEmpty;
+import static org.apache.commons.lang3.ArrayUtils.*;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 /**
@@ -50,7 +49,10 @@ public class ArabicWord implements ArabicSupport, Serializable, Comparable<Arabi
      */
     @ConstructorProperties({"letters"})
     public ArabicWord(ArabicLetter... letters) {
-        this.letters = isEmpty(letters) ? new ArabicLetter[0] : letters;
+        this.letters = new ArabicLetter[0];
+        if (isNotEmpty(letters)) {
+            this.letters = ArrayUtils.addAll(this.letters, letters);
+        }
         convert();
     }
 
@@ -284,6 +286,7 @@ public class ArabicWord implements ArabicSupport, Serializable, Comparable<Arabi
      * letter is is one of non-connectors.
      * <div><span style='font-weight: bold'>NOTE:</span> this method works for single word, this method cannot
      * handle multiple word with space and/or and</div>
+     *
      * @param src the given word
      * @return the given word with {@link ArabicLetterType#TATWEEL} added in between every letter unless the letter
      * is one of non-connectors.
@@ -399,7 +402,7 @@ public class ArabicWord implements ArabicSupport, Serializable, Comparable<Arabi
     @Override
     public boolean equals(Object obj) {
         boolean result = false;
-        if (isGivenType(ArabicWord.class, obj)) {
+        if (isInstanceOf(ArabicWord.class, obj)) {
             ArabicWord other = (ArabicWord) obj;
             result = toBuckWalter().equals(other.toBuckWalter());
         }

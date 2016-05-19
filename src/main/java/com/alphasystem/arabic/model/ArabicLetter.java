@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 import static com.alphasystem.util.HashCodeUtil.hash;
 import static java.lang.Character.valueOf;
+import static java.lang.String.format;
 import static org.apache.commons.lang3.ArrayUtils.isEmpty;
 
 /**
@@ -51,6 +52,11 @@ public class ArabicLetter implements ArabicSupport, Serializable, Comparable<Ara
             this.diacritics[i] = diacritics[i];
         }
         convert();
+    }
+
+    static String toHtmlCodeString(char unicode) {
+        String s = format("%04x", (int) unicode);
+        return format("&#x%s;", s);
     }
 
     public static ArabicLetter getArabicLetter(ArabicLetterType letter,
@@ -102,7 +108,7 @@ public class ArabicLetter implements ArabicSupport, Serializable, Comparable<Ara
                 bwBuilder.append(d.getCode());
                 unicode = d.getUnicode();
                 ucBuilder.append(unicode);
-                htmlBuilder.append(letter.getHtmlCode());
+                htmlBuilder.append(d.getHtmlCode());
             }
         }
         bukWalterString = bwBuilder.toString();
