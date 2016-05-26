@@ -17,17 +17,5 @@ public interface SarfMemberType extends ArabicSupport {
 	/**
 	 * @return
 	 */
-	ArabicWord getMemberTermLabel();
-
-	/**
-	 *
-	 * @return
-	 */
-    @Override
-    ArabicWord getLabel();
-
-	/**
-	 * @return
-	 */
 	String getMemberTermName();
 }

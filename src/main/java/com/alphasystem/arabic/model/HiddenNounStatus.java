@@ -44,9 +44,8 @@ public enum HiddenNounStatus implements SarfMemberType {
         this.numberLabel = numberLabel;
     }
 
-    @Override
-    public ArabicWord getMemberTermLabel() {
-        return concatenateWithSpace(getLabel(), getNumberLabel());
+    public ArabicWord getStatus(){
+        return label;
     }
 
     public ArabicWord getNumberLabel() {
@@ -55,7 +54,7 @@ public enum HiddenNounStatus implements SarfMemberType {
 
     @Override
     public ArabicWord getLabel() {
-        return label;
+        return concatenateWithSpace(getStatus(), getNumberLabel());
     }
 
 
