@@ -106,10 +106,18 @@ public class ArabicWord implements ArabicSupport, Serializable, Comparable<Arabi
 
     public static ArabicWord concatenateWithSpace(ArabicWord... words) {
         List<ArabicLetter> letters = new ArrayList<ArabicLetter>();
-        addAll(letters, words[0].getLetters());
+        ArabicWord currentWord = words[0];
+        if (currentWord != null) {
+            addAll(letters, currentWord.getLetters());
+        }
         for (int i = 1; i < words.length; i++) {
-            addAll(letters, LETTER_SPACE);
-            addAll(letters, words[i].getLetters());
+            if (!letters.isEmpty()) {
+                addAll(letters, LETTER_SPACE);
+            }
+            currentWord = words[i];
+            if (currentWord != null) {
+                addAll(letters, currentWord.getLetters());
+            }
         }
         return new ArabicWord(letters);
     }
