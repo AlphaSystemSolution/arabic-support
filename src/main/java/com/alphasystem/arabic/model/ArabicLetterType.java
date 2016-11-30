@@ -105,7 +105,7 @@ public enum ArabicLetterType implements ArabicCharacter, ArabicSupport {
 
     SMALL_HIGH_THREE_DOTS('O', '\u06DB'),
 
-    SMALL_HIGH_SEEN(':', '\u06DC'),
+    SMALL_HIGH_SEEN('K', '\u06DC'),
 
     END_OF_AYAH('V', '\u06DD'),
 
@@ -148,6 +148,8 @@ public enum ArabicLetterType implements ArabicCharacter, ArabicSupport {
     LEFT_PARENTHESIS('(', '\u0028'),
 
     RIGHT_PARENTHESIS(')', '\u0029'),
+
+    SEMI_COLON(':', '\u003A'),
 
     ZERO('0', '\u0660'),
 

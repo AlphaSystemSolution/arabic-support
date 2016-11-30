@@ -174,6 +174,7 @@ public class ArabicWord implements ArabicSupport, Serializable, Comparable<Arabi
         return fromString(unicodeString, true);
     }
 
+    @Deprecated
     public static ArabicWord getArabicNumber(int value) {
         String s = valueOf(value);
         ArabicLetterType[] letters = new ArabicLetterType[s.length()];
@@ -184,6 +185,7 @@ public class ArabicWord implements ArabicSupport, Serializable, Comparable<Arabi
         return getWord(letters);
     }
 
+    @Deprecated
     public static String getChapterNumber(int chapterNumber) {
         return getVerseChapterNumber(chapterNumber, -1, true, false, true);
     }
@@ -208,6 +210,7 @@ public class ArabicWord implements ArabicSupport, Serializable, Comparable<Arabi
         return arabicWord;
     }
 
+    @Deprecated
     public static String getVerseChapterNumber(int chapterNumber,
                                                int verseNumber, boolean includeChapterNumber,
                                                boolean includeVerseNumber, boolean encloseBracket) {
