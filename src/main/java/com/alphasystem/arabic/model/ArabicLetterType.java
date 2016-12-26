@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.alphasystem.arabic.model;
 
 import javax.xml.bind.annotation.XmlEnum;
@@ -105,7 +102,7 @@ public enum ArabicLetterType implements ArabicCharacter, ArabicSupport {
 
     SMALL_HIGH_THREE_DOTS('O', '\u06DB'),
 
-    SMALL_HIGH_SEEN('K', '\u06DC'),
+    SMALL_HIGH_SEEN('C', '\u06DC'),
 
     END_OF_AYAH('V', '\u06DD'),
 
@@ -218,6 +215,7 @@ public enum ArabicLetterType implements ArabicCharacter, ArabicSupport {
         return String.valueOf(code);
     }
 
+    @Override
     public String getHtmlCode() {
         return ArabicLetter.toHtmlCodeString(unicode);
     }
