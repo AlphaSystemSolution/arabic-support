@@ -9,7 +9,9 @@ package com.alphasystem.arabic.model;
  */
 public interface ArabicCharacter {
 
-	public char getCode();
+	char getCode();
 	
-	public char getUnicode();
+	char getUnicode();
+
+    String getHtmlCode();
 }
