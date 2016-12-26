@@ -82,6 +82,7 @@ public enum DiacriticType implements ArabicCharacter {
         return String.valueOf(unicode);
     }
 
+    @Override
     public String getHtmlCode() {
         return ArabicLetter.toHtmlCodeString(unicode);
     }
