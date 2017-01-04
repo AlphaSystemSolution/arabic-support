@@ -93,7 +93,7 @@ public enum HiddenPronounStatus implements SarfMemberType {
     }
 
     @Override
-    public ArabicWord getLabel() {
+    public ArabicWord toLabel() {
         return concatenateWithSpace(getConversationLabel(), getGenderLabel(), getNumberLabel());
     }
 

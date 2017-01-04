@@ -221,7 +221,7 @@ public enum ArabicLetterType implements ArabicCharacter, ArabicSupport {
     }
 
     @Override
-    public ArabicWord getLabel() {
+    public ArabicWord toLabel() {
         return ArabicWord.getWord(this);
     }
 }

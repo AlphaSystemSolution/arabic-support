@@ -53,7 +53,7 @@ public enum HiddenNounStatus implements SarfMemberType {
     }
 
     @Override
-    public ArabicWord getLabel() {
+    public ArabicWord toLabel() {
         return concatenateWithSpace(getStatus(), getNumberLabel());
     }
 

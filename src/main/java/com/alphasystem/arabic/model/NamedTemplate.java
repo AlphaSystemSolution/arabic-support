@@ -279,7 +279,7 @@ public enum NamedTemplate implements ArabicSupportEnum {
     }
 
     @Override
-    public ArabicWord getLabel() {
+    public ArabicWord toLabel() {
         return label;
     }
 

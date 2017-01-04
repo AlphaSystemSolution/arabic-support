@@ -167,7 +167,7 @@ public class ArabicLetter implements ArabicSupport, Serializable, Comparable<Ara
     }
 
     @Override
-    public ArabicWord getLabel() {
+    public ArabicWord toLabel() {
         return ArabicWord.getWord(this);
     }
 }
