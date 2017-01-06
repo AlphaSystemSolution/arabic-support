@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
 
 import static com.alphasystem.arabic.model.ArabicLetterType.*;
-import static com.alphasystem.arabic.model.ArabicWord.fromBuckWalterString;
 import static com.alphasystem.arabic.model.ArabicWord.getWord;
 import static com.alphasystem.arabic.model.DiacriticType.*;
 import static java.lang.String.format;
@@ -207,26 +206,7 @@ public enum NamedTemplate implements ArabicSupportEnum {
                     new ArabicLetter(AIN, KASRA), new ArabicLetter(LAM, DAMMA)),
             // type
             getWord(FA, AIN, LAM, SPACE, THA, LAM, ALIF, THA, YA, SPACE, MEEM,
-                    ZAIN, YA, DAL, SPACE, FA, YA, HA)),
-
-    FORM_XI_TEMPLATE("XI",
-            2,
-            9,
-            // label
-            getWord(new ArabicLetter(ALIF_HAMZA_BELOW, KASRA),
-                    new ArabicLetter(FA, SUKUN), new ArabicLetter(AIN, FATHA),
-                    new ArabicLetter(WAW, SUKUN), new ArabicLetter(AIN, FATHA),
-                    new ArabicLetter(LAM, FATHA), new ArabicLetter(SPACE),
-                    new ArabicLetter(YA, FATHA), new ArabicLetter(FA, SUKUN),
-                    new ArabicLetter(AIN, FATHA), new ArabicLetter(WAW, SUKUN),
-                    new ArabicLetter(AIN, KASRA), new ArabicLetter(LAM, DAMMA)),
-            // type
-            getWord(FA, AIN, LAM, SPACE, THA, LAM, ALIF, THA, YA, SPACE, MEEM,
-                    ZAIN, YA, DAL, SPACE, FA, YA, HA)),
-
-    FORM_XII_TEMPLATE("XII", 2, 10, "IifoEaw~ala", "fElQvlAvyQmzydQfyh"),
-
-    FORM_XIII_TEMPLATE("XIII", 2, 11, "IifoEaAl~a", "fElQvlAvyQmzydQfyh");
+                    ZAIN, YA, DAL, SPACE, FA, YA, HA));
 
     private final String form;
 
@@ -251,18 +231,6 @@ public enum NamedTemplate implements ArabicSupportEnum {
         this.subIndex = subIndex;
         this.label = label;
         this.type = type;
-    }
-
-    /**
-     * @param form
-     * @param index
-     * @param subIndex
-     * @param label
-     * @param type
-     */
-    @Deprecated
-    NamedTemplate(String form, Integer index, Integer subIndex, String label, String type) {
-        this(form, index, subIndex, fromBuckWalterString(label), fromBuckWalterString(type));
     }
 
     @Override
