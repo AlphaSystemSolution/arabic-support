@@ -267,7 +267,7 @@ public enum NamedTemplate implements ArabicSupportEnum {
 
     @Override
     public String getCode() {
-        return format("Form %s", form);
+        return format("Family %s", form);
     }
 
     public String getForm() {
