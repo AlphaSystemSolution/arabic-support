@@ -140,7 +140,7 @@ public enum ArabicLetterType implements ArabicCharacter, ArabicSupport {
 
     ORNATE_RIGHT_PARENTHESIS(')', '\uFD3F'),
 
-    ASTERISK('*', '\u002A'),
+    FORWARD_SLASH('/', '\u002F'),
 
     LEFT_PARENTHESIS('(', '\u0028'),
 
