@@ -177,9 +177,85 @@ public enum ArabicLetterType implements ArabicCharacter, ArabicSupport {
     private static final Map<Character, ArabicLetterType> lettersByUnicodeMap = new LinkedHashMap<>();
 
     static {
+        putByCode(HAMZA);
+        putByCode(ALIF_MADDAH);
+        putByCode(ALIF_HAMZA_ABOVE);
+        putByCode(WAW_HAMZA_ABOVE);
+        putByCode(ALIF_HAMZA_BELOW);
+        putByCode(YA_HAMZA_ABOVE);
+        putByCode(ALIF);
+        putByCode(BA);
+        putByCode(TA_MARBUTA);
+        putByCode(TA);
+        putByCode(THA);
+        putByCode(JEEM);
+        putByCode(HHA);
+        putByCode(KHA);
+        putByCode(DAL);
+        putByCode(THAL);
+        putByCode(RA);
+        putByCode(ZAIN);
+        putByCode(SEEN);
+        putByCode(SHEEN);
+        putByCode(SAD);
+        putByCode(DDAD);
+        putByCode(TTA);
+        putByCode(DTHA);
+        putByCode(AIN);
+        putByCode(GHAIN);
+        putByCode(TATWEEL);
+        putByCode(FA);
+        putByCode(QAF);
+        putByCode(KAF);
+        putByCode(LAM);
+        putByCode(MEEM);
+        putByCode(NOON);
+        putByCode(HA);
+        putByCode(WAW);
+        putByCode(ALIF_MAKSURA);
+        putByCode(YA);
+        putByCode(ALIF_HAMZATWASL);
+        putByCode(HAMZA_ABOVE);
+        putByCode(SMALL_HIGH_LIGATURE_SAD);
+        putByCode(SMALL_HIGH_LIGATURE_QAF);
+        putByCode(SMALL_HIGH_LIGATURE_MEEM);
+        putByCode(SMALL_HIGH_LIGATURE_LAM_ALIF);
+        putByCode(SMALL_HIGH_JEEM);
+        putByCode(SMALL_HIGH_THREE_DOTS);
+        putByCode(SMALL_HIGH_SEEN);
+        putByCode(END_OF_AYAH);
+        putByCode(START_OF_RUB_EL_HIZB);
+        putByCode(SMALL_HIGH_ROUNDED_ZERO);
+        putByCode(SMALL_HIGH_UPRIGHT_RECTANGULAR_ZERO);
+        putByCode(SMALL_HIGH_MEEM_ISOLATED_FORM);
+        putByCode(SMALL_LOW_SEEN);
+        putByCode(SMALL_WAW);
+        putByCode(SMALL_YA);
+        putByCode(SMALL_HIGH_YEH);
+        putByCode(SMALL_HIGH_NOON);
+        putByCode(PLACE_OF_SAJDAH);
+        putByCode(EMPTY_CENTRE_LOW_STOP);
+        putByCode(EMPTY_CENTRE_HIGH_STOP);
+        putByCode(ROUNDED_HIGH_STOP_WITH_FILLED_CENTRE);
+        putByCode(SMALL_LOW_MEEM);
+        putByCode(SPACE);
+        putByCode(ORNATE_LEFT_PARENTHESIS);
+        putByCode(ORNATE_RIGHT_PARENTHESIS);
+        putByCode(FORWARD_SLASH);
+        putByCode(ZERO);
+        putByCode(ONE);
+        putByCode(TWO);
+        putByCode(THREE);
+        putByCode(FOUR);
+        putByCode(FIVE);
+        putByCode(SIX);
+        putByCode(SEVEN);
+        putByCode(EIGHT);
+        putByCode(NINE);
+        putByCode(ZERO);
+        putByCode(NEW_LINE);
         for (ArabicLetterType letter : values()) {
-            lettersByCodeMap.put(letter.getCode(), letter);
-            lettersByUnicodeMap.put(letter.getUnicode(), letter);
+            putByUnicode(letter);
         }
     }
 
@@ -197,6 +273,18 @@ public enum ArabicLetterType implements ArabicCharacter, ArabicSupport {
 
     public static ArabicLetterType getByUnicode(char unicode) {
         return lettersByUnicodeMap.get(unicode);
+    }
+
+    private static void put(ArabicLetterType letter, boolean code, Map<Character, ArabicLetterType> map) {
+        map.put(code ? letter.getCode() : letter.getUnicode(), letter);
+    }
+
+    private static void putByCode(ArabicLetterType letter) {
+        put(letter, true, lettersByCodeMap);
+    }
+
+    private static void putByUnicode(ArabicLetterType letter) {
+        put(letter, false, lettersByUnicodeMap);
     }
 
     @Override
