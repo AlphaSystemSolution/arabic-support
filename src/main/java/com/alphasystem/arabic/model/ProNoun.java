@@ -1,8 +1,20 @@
 package com.alphasystem.arabic.model;
 
-import static com.alphasystem.arabic.model.ArabicLetterType.*;
+import static com.alphasystem.arabic.model.ArabicLetterType.ALIF;
+import static com.alphasystem.arabic.model.ArabicLetterType.ALIF_HAMZA_ABOVE;
+import static com.alphasystem.arabic.model.ArabicLetterType.HA;
+import static com.alphasystem.arabic.model.ArabicLetterType.HHA;
+import static com.alphasystem.arabic.model.ArabicLetterType.MEEM;
+import static com.alphasystem.arabic.model.ArabicLetterType.NOON;
+import static com.alphasystem.arabic.model.ArabicLetterType.TA;
+import static com.alphasystem.arabic.model.ArabicLetterType.WAW;
+import static com.alphasystem.arabic.model.ArabicLetterType.YA;
 import static com.alphasystem.arabic.model.ArabicWord.getWord;
-import static com.alphasystem.arabic.model.DiacriticType.*;
+import static com.alphasystem.arabic.model.DiacriticType.DAMMA;
+import static com.alphasystem.arabic.model.DiacriticType.FATHA;
+import static com.alphasystem.arabic.model.DiacriticType.KASRA;
+import static com.alphasystem.arabic.model.DiacriticType.SHADDA;
+import static com.alphasystem.arabic.model.DiacriticType.SUKUN;
 
 /**
  * @author sali
@@ -21,7 +33,7 @@ public enum ProNoun {
     THIRD_PERSON_FEMININE_DUAL(getWord(new ArabicLetter(HA, DAMMA), new ArabicLetter(MEEM, FATHA),
             new ArabicLetter(ALIF))),
 
-    THIRD_PERSON_FEMININE_PLURAL(getWord(new ArabicLetter(HA, DAMMA), new ArabicLetter(MEEM, SUKUN))),
+    THIRD_PERSON_FEMININE_PLURAL(getWord(new ArabicLetter(HA, DAMMA), new ArabicLetter(NOON, SHADDA, FATHA))),
 
     SECOND_PERSON_MASCULINE_SINGULAR(getWord(new ArabicLetter(ALIF_HAMZA_ABOVE, FATHA),
             new ArabicLetter(NOON, SUKUN), new ArabicLetter(TA, FATHA))),
