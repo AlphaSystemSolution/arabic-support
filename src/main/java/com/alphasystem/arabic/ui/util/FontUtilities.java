@@ -17,19 +17,34 @@ public final class FontUtilities {
     private static final String ARIAL = "Arial";
     private static final String CANDARA = "Candara";
     public static final long DEFAULT_ARABIC_FONT_SIZE = 20;
+    public static final long DEFAULT_ARABIC_HEADING_FONT_SIZE = 40;
     public static final int DEFAULT_ENGLISH_FONT_SIZE = 12;
 
     public static final Font ENGLISH_FONT_14 = getEnglishFont(14);
-    public static final Font ARABIC_FONT_24 = getArabicFont(24L);
+    public static final Font ARABIC_FONT_24 = getArabicRegularFont(24L);
 
-    /**
-     * Do not let anyone instantiate this class
-     */
-    private FontUtilities(){
+    public static final String defaultArabicFontName;
+    public static final String defaultEnglishFontName;
+    public static final long defaultArabicRegularFontSize;
+    public static final long defaultArabicHeadingFontSize;
+    public static final long defaultEnglishFontSize;
+
+    static {
+        final List<String> families = Font.getFamilies();
+        defaultArabicFontName = getDefaultArabicFontName(families);
+        defaultEnglishFontName = getDefaultEnglishFont(families);
+        defaultArabicRegularFontSize = getArabicRegularFontSize(-1);
+        defaultArabicHeadingFontSize = getArabicHeadingFontSize(-1);
+        defaultEnglishFontSize = getEnglishRegularFontSize(-1);
     }
 
-    public static String getDefaultArabicFontName() {
-        final List<String> families = Font.getFamilies();
+    /**
+     * Do not let anyone instantiate this class.
+     */
+    private FontUtilities() {
+    }
+
+    private static String getDefaultArabicFontName(final List<String> families) {
         if (families.contains(KFGQPC_UTHMAN_TAHA_NASKH)) {
             return KFGQPC_UTHMAN_TAHA_NASKH;
         }
@@ -42,27 +57,49 @@ public final class FontUtilities {
         return ARIAL;
     }
 
-    public static String getDefaultEnglishFont(){
-        final List<String> families = Font.getFamilies();
-        if(families.contains(CANDARA)){
-            return CANDARA;
-        }
-        return ARIAL;
+    private static String getDefaultEnglishFont(final List<String> families) {
+        return families.contains(CANDARA) ? CANDARA : ARIAL;
     }
 
-    public static Font getArabicFont(long size){
-        return getArabicFont(FontWeight.BLACK, FontPosture.REGULAR, size);
+    private static long getFontSize(String propertyName, long size, long defaultSize) {
+        final String defaultValue = String.valueOf(size <= -1 ? defaultSize : size);
+        return Long.parseLong(System.getProperty(propertyName, defaultValue));
     }
 
-    public static Font getArabicFont(FontWeight weight, FontPosture posture, long size){
-        return Font.font(getDefaultArabicFontName(), weight, posture, size);
+    private static long getArabicRegularFontSize(long size) {
+        return getFontSize("arabic.regular.font.size", size, DEFAULT_ARABIC_FONT_SIZE);
     }
 
-    public static Font getEnglishFont(long size){
-        return getEnglishFont(FontWeight.BLACK, FontPosture.REGULAR, size);
+    private static long getEnglishRegularFontSize(long size) {
+        return getFontSize("english.regular.font.size", size, DEFAULT_ENGLISH_FONT_SIZE);
     }
 
-    public static Font getEnglishFont(FontWeight weight, FontPosture posture, long size){
-        return Font.font(getDefaultEnglishFont(), weight, posture, size);
+    private static long getArabicHeadingFontSize(long size) {
+        return getFontSize("arabic.heading.font.size", size, DEFAULT_ARABIC_HEADING_FONT_SIZE);
     }
+
+    public static Font getArabicRegularFont() {
+        return getArabicRegularFont(-1);
+    }
+
+    public static Font getArabicRegularFont(long size) {
+        return Font.font(defaultArabicFontName, FontWeight.BLACK, FontPosture.REGULAR, getArabicRegularFontSize(size));
+    }
+
+    public static Font getArabicHeadingFont() {
+        return getArabicHeadingFont(-1);
+    }
+
+    public static Font getArabicHeadingFont(long size) {
+        return Font.font(defaultArabicFontName, FontWeight.BOLD, FontPosture.REGULAR, getArabicHeadingFontSize(size));
+    }
+
+    public static Font getEnglishFont() {
+        return getEnglishFont(-1);
+    }
+
+    public static Font getEnglishFont(long size) {
+        return Font.font(defaultEnglishFontName, FontWeight.BLACK, FontPosture.REGULAR, getEnglishRegularFontSize(size));
+    }
+
 }
