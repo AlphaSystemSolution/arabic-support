@@ -1,8 +1,7 @@
 package com.alphasystem.arabic.ui.util;
 
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -16,12 +15,13 @@ public final class FontUtilities {
     private static final String ARABIC_TYPESETTING = "Arabic Typesetting";
     private static final String ARIAL = "Arial";
     private static final String CANDARA = "Candara";
+    private static final String ARABIC_FONT_NAME = "arabic.font.name";
+    private static final String ARABIC_REGULAR_FONT_SIZE = "arabic.regular.font.size";
+    private static final String ARABIC_HEADING_FONT_SIZE = "arabic.heading.font.size";
+    private static final String ENGLISH_REGULAR_FONT_SIZE = "english.regular.font.size";
     public static final long DEFAULT_ARABIC_FONT_SIZE = 20;
     public static final long DEFAULT_ARABIC_HEADING_FONT_SIZE = 40;
     public static final int DEFAULT_ENGLISH_FONT_SIZE = 12;
-
-    public static final Font ENGLISH_FONT_14 = getEnglishFont(14);
-    public static final Font ARABIC_FONT_24 = getArabicRegularFont(24L);
 
     public static final String defaultArabicFontName;
     public static final String defaultEnglishFontName;
@@ -33,9 +33,9 @@ public final class FontUtilities {
         final List<String> families = Font.getFamilies();
         defaultArabicFontName = getDefaultArabicFontName(families);
         defaultEnglishFontName = getDefaultEnglishFont(families);
-        defaultArabicRegularFontSize = getArabicRegularFontSize(-1);
-        defaultArabicHeadingFontSize = getArabicHeadingFontSize(-1);
-        defaultEnglishFontSize = getEnglishRegularFontSize(-1);
+        defaultArabicRegularFontSize = getArabicRegularFontSize();
+        defaultArabicHeadingFontSize = getArabicHeadingFontSize();
+        defaultEnglishFontSize = getEnglishRegularFontSize();
     }
 
     /**
@@ -45,6 +45,10 @@ public final class FontUtilities {
     }
 
     private static String getDefaultArabicFontName(final List<String> families) {
+        final String fontName = System.getProperty(ARABIC_FONT_NAME);
+        if (StringUtils.isNotBlank(fontName)) {
+            return fontName;
+        }
         if (families.contains(KFGQPC_UTHMAN_TAHA_NASKH)) {
             return KFGQPC_UTHMAN_TAHA_NASKH;
         }
@@ -61,45 +65,21 @@ public final class FontUtilities {
         return families.contains(CANDARA) ? CANDARA : ARIAL;
     }
 
-    private static long getFontSize(String propertyName, long size, long defaultSize) {
-        final String defaultValue = String.valueOf(size <= -1 ? defaultSize : size);
+    private static long getFontSize(String propertyName, long defaultSize) {
+        final String defaultValue = String.valueOf(defaultSize);
         return Long.parseLong(System.getProperty(propertyName, defaultValue));
     }
 
-    private static long getArabicRegularFontSize(long size) {
-        return getFontSize("arabic.regular.font.size", size, DEFAULT_ARABIC_FONT_SIZE);
+    private static long getArabicRegularFontSize() {
+        return getFontSize(ARABIC_REGULAR_FONT_SIZE, DEFAULT_ARABIC_FONT_SIZE);
     }
 
-    private static long getEnglishRegularFontSize(long size) {
-        return getFontSize("english.regular.font.size", size, DEFAULT_ENGLISH_FONT_SIZE);
+    private static long getEnglishRegularFontSize() {
+        return getFontSize(ENGLISH_REGULAR_FONT_SIZE, DEFAULT_ENGLISH_FONT_SIZE);
     }
 
-    private static long getArabicHeadingFontSize(long size) {
-        return getFontSize("arabic.heading.font.size", size, DEFAULT_ARABIC_HEADING_FONT_SIZE);
-    }
-
-    public static Font getArabicRegularFont() {
-        return getArabicRegularFont(-1);
-    }
-
-    public static Font getArabicRegularFont(long size) {
-        return Font.font(defaultArabicFontName, FontWeight.BLACK, FontPosture.REGULAR, getArabicRegularFontSize(size));
-    }
-
-    public static Font getArabicHeadingFont() {
-        return getArabicHeadingFont(-1);
-    }
-
-    public static Font getArabicHeadingFont(long size) {
-        return Font.font(defaultArabicFontName, FontWeight.BOLD, FontPosture.REGULAR, getArabicHeadingFontSize(size));
-    }
-
-    public static Font getEnglishFont() {
-        return getEnglishFont(-1);
-    }
-
-    public static Font getEnglishFont(long size) {
-        return Font.font(defaultEnglishFontName, FontWeight.BLACK, FontPosture.REGULAR, getEnglishRegularFontSize(size));
+    private static long getArabicHeadingFontSize() {
+        return getFontSize(ARABIC_HEADING_FONT_SIZE, DEFAULT_ARABIC_HEADING_FONT_SIZE);
     }
 
 }
