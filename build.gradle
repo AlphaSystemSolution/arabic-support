@@ -5,6 +5,12 @@
 plugins {
     id 'java'
     id 'maven-publish'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+}
+
+javafx {
+    version = "18"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 repositories {
@@ -15,12 +21,23 @@ repositories {
 
 dependencies {
     compile 'com.alphasystem:commons:3.0.0-SNAPSHOT'
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation 'com.sun.xml.bind:jaxb-core:4.0.0-M4'
+    implementation 'com.sun.xml.bind:jaxb-impl:4.0.0-M4'
 }
 
 group = 'com.alphasystem.arabic'
-version = '3.0.0-SNAPSHOT'
+version = '4.0.0-SNAPSHOT'
 description = 'arabic-support'
-sourceCompatibility = '1.8'
+sourceCompatibility = '11'
+
+compileJava {
+    doFirst {
+        options.compilerArgs += [
+                '--module-path', System.getenv('PATH_TO_FX')
+        ]
+    }
+}
 
 publishing {
     publications {
